@@ -15,7 +15,7 @@ NASA_TOKEN=BqnssG5NGr0h61pd0zCkeLQJIBJgd5cX9rAtHMDt
 ```
 ## Запуск скрипта в консоли
 ```
-python3 main.py
+python3 space.py
 
 
 ```
