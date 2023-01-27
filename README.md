@@ -1,17 +1,25 @@
 # Space
 
 ## Описание работы скрипта:
-Скрипт скачивает с ресурса NASA и SpaceX фотографии, связанные с космической тематикой.
+Скачивает с ресурса NASA и SpaceX фотографии, связанные с космической тематикой, 
+а также загружает скаченные фото (в произвольном порядке) в Telegram канал с установленным интервалом времени.
+
+## Получение ID для скачивания фото с ресурса SpaceX
+
+[Документация: получить фотографии запуска по id](https://github.com/r-spacex/SpaceX-API/blob/master/docs/launches/v5/one.md)
+
 
 ## Зависимости
-Python3:
+Python3 должен быть уже установлен. Затем используйте pip 
+(или pip3, есть есть конфликт с Python2) для установки зависимостей:
+
 ```
 pip install -r requirements.txt
 ```
 ## Окружение
 .env
 
-TOKEN авторизации NASA
+[API key авторизации NASA](https://api.nasa.gov) 
 ```
 NASA_TOKEN=BqnssG5NGr0h61pd0zCkeLQJIBJgd5cX9rAtHMDt
 ```
@@ -24,4 +32,8 @@ python3 fetch_nasa_apod_images.py 13
 # (количество случайных фото, по умолчанию 10)
 
 python3 fetch_nasa_epic_images.py
+
+python3 telegram_bot.py 60
+# (время задержки в секундах, по умолчанию 4 часа) 
+Запускается бесконечный цикл, выход из цикла: Control + C
 ```
