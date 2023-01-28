@@ -1,7 +1,9 @@
 import requests
 import argparse
 
-from general_function import loading_img, file_ext
+from general_function import download_img, extraction_extension
+
+
 def fetch_spacex_last_launch():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -17,9 +19,10 @@ def fetch_spacex_last_launch():
     res_links = response.json()['links']['flickr']['original']
 
     for link_number, link in enumerate(res_links):
-        filename_ext = file_ext(link)
+        filename_ext = extraction_extension(link)
         images_path = f'./images/spacex_{link_number}{filename_ext}'
-        loading_img(link, images_path)
+        download_img(link, images_path)
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     fetch_spacex_last_launch()
