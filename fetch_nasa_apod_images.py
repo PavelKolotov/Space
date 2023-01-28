@@ -3,7 +3,7 @@ import requests
 import argparse
 
 from dotenv import load_dotenv
-from general_function import loading_img, ext_file
+from general_function import loading_img, file_ext
 
 
 def fetch_nasa_apod():
@@ -25,12 +25,12 @@ def fetch_nasa_apod():
     }
 
     response = requests.get(url, params=params)
-    links_nasa = response.json()
-    for link_numbers, link in enumerate(links_nasa):
+    nasa_links = response.json()
+    for link_number, link in enumerate(nasa_links):
         url_link = link['url']
-        ext_filename = ext_file(url_link)
-        images_path = f'./images/nasa_apod_{link_numbers}{ext_filename}'
-        if ext_filename:
+        filename_ext = file_ext(url_link)
+        images_path = f'./images/nasa_apod_{link_number}{filename_ext}'
+        if filename_ext:
             loading_img(url_link, images_path)
 
 

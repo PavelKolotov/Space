@@ -2,7 +2,7 @@ import os
 import requests
 
 from dotenv import load_dotenv
-from general_function import loading_img, ext_file
+from general_function import loading_img, file_ext
 
 def fetch_nasa_epic():
     load_dotenv()
@@ -12,18 +12,17 @@ def fetch_nasa_epic():
         'api_key': nasa_token,
     }
     response = requests.get(url, params=params)
-    links_epic = response.json()
-    for link_numbers, link in enumerate(links_epic):
+    epic_links = response.json()
+    for link_number, link in enumerate(epic_links):
         img_name = link['image']
         datetime_epic = link['date']
         datetime_parse = datetime_epic.split(' ')
         date_parse = datetime_parse[0].split('-')
-        url_img = f'https://api.nasa.gov/EPIC/archive/natural/{date_parse[0]}/{date_parse[1]}/{date_parse[2]}/' \
+        img_url = f'https://api.nasa.gov/EPIC/archive/natural/{date_parse[0]}/{date_parse[1]}/{date_parse[2]}/' \
                   f'png/{img_name}.png?api_key={nasa_token}'
-        ext_filename = ext_file(url_img)
-        images_path = f'./images/nasa_epic_{link_numbers}{ext_filename}'
-        loading_img(url_img, images_path)
-
+        filename_ext = file_ext(img_url)
+        images_path = f'./images/nasa_epic_{link_number}{filename_ext}'
+        loading_img(img_url, images_path)
 
 
 if __name__ == "__main__":
