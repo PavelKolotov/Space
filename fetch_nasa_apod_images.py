@@ -23,17 +23,18 @@ def fetch_nasa_apod():
         'api_key': nasa_token,
         'count': count
     }
-    i = 0
+
     response = requests.get(url, params=params)
     links_nasa = response.json()
-    for link in links_nasa:
+    for link_numbers, link in enumerate(links_nasa):
         url_link = link['url']
         ext_filename = ext_file(url_link)
-        images_path = f'./images/nasa_apod_{i}{ext_filename}'
+        images_path = f'./images/nasa_apod_{link_numbers}{ext_filename}'
         if ext_filename:
             loading_img(url_link, images_path)
-        i += 1
+
 
 
 if __name__ == "__main__":
     fetch_nasa_apod()
+

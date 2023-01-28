@@ -24,3 +24,4 @@ images
 __pycache__
 .idea
 .env
+test.py

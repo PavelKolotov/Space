@@ -3,7 +3,6 @@ import argparse
 
 from general_function import loading_img, ext_file
 def fetch_spacex_last_launch():
-    i = 0
     parser = argparse.ArgumentParser()
     parser.add_argument(
         'key_spacex',
@@ -17,11 +16,10 @@ def fetch_spacex_last_launch():
     response = requests.get(url)
     links_res = response.json()['links']['flickr']['original']
 
-    for link in links_res:
+    for link_number, link in enumerate(links_res):
         ext_filename = ext_file(link)
-        images_path = f'./images/spacex_{i}{ext_filename}'
+        images_path = f'./images/spacex_{link_number}{ext_filename}'
         loading_img(link, images_path)
-        i += 1
 
 if __name__ == "__main__":
     fetch_spacex_last_launch()
