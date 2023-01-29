@@ -22,6 +22,8 @@ pip install -r requirements.txt
 [API key авторизации NASA](https://api.nasa.gov) 
 ```
 NASA_TOKEN=BqnssG5NGr0h61pd0zCkeLQJIBJgd5cX9rAtHMDt
+TELEGRAM_TOKEN= (токен телеграм bot)
+TELEGRAM_CHAT_ID= (ID канала)
 ```
 ## Запуск скрипта в консоли
 ```

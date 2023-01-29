@@ -14,7 +14,7 @@ def download_img(img_url, images_path):
         file.write(response.content)
 
 
-def extraction_extension(link):
+def separate_extension(link):
     url_encoding = urllib.parse.unquote(link)
     url_parse = urllib.parse.urlsplit(url_encoding)
     filename = os.path.split(url_parse.path)[1]

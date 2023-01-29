@@ -6,12 +6,12 @@ import argparse
 import telegram
 
 from dotenv import load_dotenv
-from io import BytesIO
 
 
-def telegram_sending():
+def send_photo_file():
     load_dotenv()
     telegram_token = os.environ['TELEGRAM_TOKEN']
+    chat_id = os.environ['TELEGRAM_CHAT_ID']
     bot = telegram.Bot(token=telegram_token)
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -26,7 +26,6 @@ def telegram_sending():
         images = os.walk('images')
         for img in images:
             foto = random.choice(img[2])
-            chat_id = os.environ['TELEGRAM_CHAT_ID']
 
             with open(f'images/{foto}', 'rb') as file:
                 file_obj = io.BytesIO(file.read())
@@ -36,4 +35,4 @@ def telegram_sending():
 
 
 if __name__ == '__main__':
-    telegram_sending()
+    send_photo_file()

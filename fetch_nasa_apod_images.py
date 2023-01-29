@@ -3,7 +3,7 @@ import requests
 import argparse
 
 from dotenv import load_dotenv
-from general_function import download_img, extraction_extension
+from general_function import download_img, separate_extension
 
 
 def fetch_nasa_apod():
@@ -25,10 +25,11 @@ def fetch_nasa_apod():
     }
 
     response = requests.get(url, params=params)
+    response.raise_for_status()
     nasa_links = response.json()
     for link_number, link in enumerate(nasa_links):
         url_link = link['url']
-        filename_ext = extraction_extension(url_link)
+        filename_ext = separate_extension(url_link)
         images_path = f'./images/nasa_apod_{link_number}{filename_ext}'
         if filename_ext:
             download_img(url_link, images_path)

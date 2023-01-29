@@ -1,7 +1,7 @@
 import requests
 import argparse
 
-from general_function import download_img, extraction_extension
+from general_function import download_img, separate_extension
 
 
 def fetch_spacex_last_launch():
@@ -16,10 +16,11 @@ def fetch_spacex_last_launch():
     spacex_key = args.spacex_key
     url = f'https://api.spacexdata.com/v5/launches/{spacex_key}'
     response = requests.get(url)
+    response.raise_for_status()
     res_links = response.json()['links']['flickr']['original']
 
     for link_number, link in enumerate(res_links):
-        filename_ext = extraction_extension(link)
+        filename_ext = separate_extension(link)
         images_path = f'./images/spacex_{link_number}{filename_ext}'
         download_img(link, images_path)
 
